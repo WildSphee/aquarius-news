@@ -1,5 +1,6 @@
 import autogen
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
@@ -41,9 +42,9 @@ executor = autogen.UserProxyAgent(
     human_input_mode="NEVER",
     code_execution_config={
         "last_n_messages": 3,
-        "work_dir": "paper",
-        "use_docker": False,
-    },  # Please set use_docker=True if docker is available to run the generated code. Using docker is safer than running the generated code directly.
+        "work_dir": os.getenv("TEMP_OUTPUT_DIR") or "temp",
+        "use_docker": True,
+    },  # Please set use_docker=True if docker is available
 )
 critic = autogen.AssistantAgent(
     name="Critic",
