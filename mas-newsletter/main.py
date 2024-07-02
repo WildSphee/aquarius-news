@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 gpt4_config = {
-    "cache_seed": 42,  # change the cache_seed for different trials
-    "temperature": 0,
+    "cache_seed": 69,
+    "temperature": 0.5,
     "config_list": autogen.config_list_from_json(env_or_file="OAI_CONFIG_LIST"),
-    "timeout": 200,
+    "timeout": 120,
 }
 user_proxy = autogen.UserProxyAgent(
     name="Admin",
