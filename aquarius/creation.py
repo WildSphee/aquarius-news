@@ -1,8 +1,9 @@
-import autogen
 import os
+from typing import Dict
+
+import autogen
 from autogen import ChatResult
 from dotenv import load_dotenv
-from typing import Dict
 
 load_dotenv()
 
@@ -12,6 +13,7 @@ gpt4_config = {
     "config_list": autogen.config_list_from_json(env_or_file="OAI_CONFIG_LIST"),
     "timeout": 120,
 }
+
 
 def create_chat_results(gpt4_config: Dict = gpt4_config) -> ChatResult:
     """
@@ -65,7 +67,6 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> ChatResult:
         max_round=50,
     )
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
-
 
     results: ChatResult = user_proxy.initiate_chat(
         manager,

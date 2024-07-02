@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mas-newsletter"
+name = "aquarius"
 version = "0.1.0"
 description = "A multiagent news letter for your personal and corporate information research"
 authors = ["Reagan <rrr.chanhiulok@gmail.com>"]
