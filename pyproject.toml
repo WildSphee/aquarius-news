@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 pyautogen = "^0.2.31"
+ruff = "^0.5.0"
+mypy = "^1.10.1"
 
 
 [build-system]
