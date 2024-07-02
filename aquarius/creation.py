@@ -17,7 +17,12 @@ gpt4_config = {
 
 def create_chat_results(gpt4_config: Dict = gpt4_config) -> ChatResult:
     """
-    gpt4_config (Dict): a config dictionary for the LLMs
+    start a autogen group chat and generate chat completion.
+
+    attribute:
+        gpt4_config (Dict): a config dictionary for the LLMs
+    return:
+
     """
 
     user_proxy = autogen.UserProxyAgent(
