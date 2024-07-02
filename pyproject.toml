@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "mas-newsletter"
+version = "0.1.0"
+description = "A multiagent news letter for your personal and corporate information research"
+authors = ["Reagan <rrr.chanhiulok@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+pyautogen = "^0.2.31"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
