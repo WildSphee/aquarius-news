@@ -2,11 +2,11 @@
 
 ## 1. Definitions
 
-1.1 **"Licensor"** refers to the owner of the Aquarius repository, owned by Reagan Chan.
+1.1 **"Licensor"** refers to the owner of the aquarius-news repository, owned by Reagan Chan.
 
 1.2 **"Licensee"** refers to any individual or entity that has been granted access to the software by the Licensor.
 
-1.3 **"Software"** refers to the Aquarius repository and all related components, scripts, and documentation.
+1.3 **"Software"** refers to the aquarius-news repository and all related components, scripts, and documentation.
 
 ## 2. Grant of License
 
