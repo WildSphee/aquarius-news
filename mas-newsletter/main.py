@@ -5,7 +5,7 @@ load_dotenv()
 
 
 llm_config = {
-    "config_list": autogen.config_list_from_json(env_or_file="AOAI_CONFIG_LIST"),
+    "config_list": autogen.config_list_from_json(env_or_file="OAI_CONFIG_LIST"),
     "cache_seed": 42,
 }
 
