@@ -7,10 +7,6 @@ from aquarius.schemas.exceptions import CustomError
 
 load_dotenv()
 
-from_gmailaddress = "gooseabot@gmail.com"
-to_gmailaddress = ["gooseabot@gmail.com"]
-app_password = os.getenv("SMTP_PASSWORD")
-
 
 def send_mail(subject: str = "Empty Subject", body: str = "empty body") -> bool:
     """
@@ -22,6 +18,9 @@ def send_mail(subject: str = "Empty Subject", body: str = "empty body") -> bool:
     return:
         bool: if success, returns true, on exception false
     """
+    from_gmailaddress = os.getenv("FROM_GMAIL")
+    to_gmailaddress = os.getenv("TO_GMAIL")
+    app_password = os.getenv("SMTP_PASSWORD")
 
     if not app_password:
         raise CustomError("SMTP_PASSWORD not set in .env.")
