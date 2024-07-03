@@ -1,4 +1,6 @@
 __pycache__/
+pytestdebug.log
+
 # credentials
 .env
 OAI_CONFIG_LIST
