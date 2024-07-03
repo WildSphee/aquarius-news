@@ -1,4 +1,4 @@
-# **Aquarius Newsletter""
+# **Aquarius Newsletter**
 *Revolutionize Your Newsletter Creation and Distribution with Intelligent Multiagent Systems*
 
 Welcome to the Aquarius! This project leverages a network of agents to dynamically create and distribute newsletters via SMTP or messaging platforms. Target is to provide automatic updated information about the latest news in a certain industry / trend.
@@ -9,7 +9,7 @@ Welcome to the Aquarius! This project leverages a network of agents to dynamical
 - Hobbyists who wants to learn about a certain topic in depth
 
 ## Table of Contents
-- [\*\*Aquarius Newsletter""](#aquarius-newsletter)
+- [**Aquarius Newsletter**](#aquarius-newsletter)
   - [Table of Contents](#table-of-contents)
   - [Value Proposition](#value-proposition)
     - [Overview](#overview)
