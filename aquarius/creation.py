@@ -2,8 +2,10 @@ import os
 from typing import Dict
 
 import autogen
-from autogen import ChatResult
+from autogen import ChatResult, register_function
 from dotenv import load_dotenv
+
+from aquarius.tools import fetch_arxiv_articles, fetch_reddit_posts
 
 load_dotenv()
 
@@ -30,6 +32,16 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
         system_message="A human admin. Interact with the planner to discuss the plan. Plan execution needs to be approved by this admin.",
         code_execution_config=False,
     )
+    executor = autogen.UserProxyAgent(
+        name="Executor",
+        system_message="Executor. Execute the code written by the engineer and report the result.",
+        human_input_mode="NEVER",
+        code_execution_config={
+            "last_n_messages": 3,
+            "work_dir": os.getenv("TEMP_OUTPUT_DIR") or "temp",
+            "use_docker": True,
+        },  # Please set use_docker=True if docker is available
+    )
     engineer = autogen.AssistantAgent(
         name="Engineer",
         llm_config=gpt4_config,
@@ -43,6 +55,16 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
         llm_config=gpt4_config,
         system_message="""Scientist. You follow an approved plan. You are able to categorize papers after seeing their abstracts printed. You don't write code.""",
     )
+    # allow the scientist to call for latest posts
+    for func in [fetch_reddit_posts, fetch_arxiv_articles]:
+        register_function(
+            func,
+            caller=scientist,  # The assistant agent can suggest calls to the calculator.
+            executor=executor,  # The user proxy agent can execute the calculator calls.
+            name=func.__name__,  # func name
+            description=func.__doc__,  # doc string
+        )
+
     planner = autogen.AssistantAgent(
         name="Planner",
         system_message="""Planner. Suggest a plan. Revise the plan based on feedback from admin and critic, until admin approval.
@@ -50,16 +72,6 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     Explain the plan first. Be clear which step is performed by an engineer, and which step is performed by a scientist.
     """,
         llm_config=gpt4_config,
-    )
-    executor = autogen.UserProxyAgent(
-        name="Executor",
-        system_message="Executor. Execute the code written by the engineer and report the result.",
-        human_input_mode="NEVER",
-        code_execution_config={
-            "last_n_messages": 3,
-            "work_dir": os.getenv("TEMP_OUTPUT_DIR") or "temp",
-            "use_docker": True,
-        },  # Please set use_docker=True if docker is available
     )
     critic = autogen.AssistantAgent(
         name="Critic",

@@ -8,11 +8,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
-def fetch_top_posts(
+def fetch_reddit_posts(
     subreddit_name: str,
     time_filter: Literal["hour", "day", "week", "month", "year", "all"] = "week",
-    limit: int = 10,
+    limit: int = 6,
 ) -> List[Dict[str, Any]]:
     """
     Fetch the top posts from a specified subreddit within a given time filter.
@@ -21,7 +20,7 @@ def fetch_top_posts(
         subreddit_name (str): The name of the subreddit.
         time_filter (Literal["hour", "day", "week", "month", "year", "all"], optional): The time filter to apply
             when fetching top posts. Defaults to "week".
-        limit (int, optional): The maximum number of posts to fetch. Default 10.
+        limit (int, optional): The maximum number of posts to fetch. Default 6.
 
     Returns:
         List[Dict[str, Any]]: A list of dictionaries, each containing details of a top post:
