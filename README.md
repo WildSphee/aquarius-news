@@ -107,5 +107,14 @@ at the root, create a file called: "AOAI_CONFIG_LIST", format:
 .env schema
 ```bash
 TEMP_OUTPUT_DIR=work_dir
+
+# Google SMTP
+FROM_GMAIL=something@gmail.com
+TO_GMAIL=something@gmail.com
 SMTP_PASSWORD=
+
+# Reddit Scraper
+USER_AGENT=python:YourProject:v1.0 (by /u/someUser)
+CLIENT_ID=
+SCRAPER_SECRET=
 ```

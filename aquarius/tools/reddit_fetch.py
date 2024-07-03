@@ -7,15 +7,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Define your Reddit API credentials
-CLIENT_ID = os.getenv("CLIENT_ID")
-CLIENT_SECRET = os.getenv("SCRAPER_SECRET")
-USER_AGENT = os.getenv("USER_AGENT")
-
-# Initialize the Reddit instance
-reddit = praw.Reddit(
-    client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent=USER_AGENT
-)
 
 
 def fetch_top_posts(
@@ -40,6 +31,15 @@ def fetch_top_posts(
             - 'score' (int): The score of the post.
             - 'created' (str): The creation time of the post in the format "YYYY-MM-DD HH:MM:SS TZ".
     """
+    # Define your Reddit API credentials
+    CLIENT_ID = os.getenv("CLIENT_ID")
+    CLIENT_SECRET = os.getenv("SCRAPER_SECRET")
+    USER_AGENT = os.getenv("USER_AGENT")
+
+    # Initialize the Reddit instance
+    reddit = praw.Reddit(
+        client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent=USER_AGENT
+    )
     subreddit = reddit.subreddit(subreddit_name)
     top_posts = subreddit.top(time_filter=time_filter, limit=limit)
 
