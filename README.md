@@ -63,7 +63,7 @@ The system consists of the following main components:
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.10+
 - pip (Python package installer)
 
 ### Steps
@@ -103,3 +103,9 @@ at the root, create a file called: "AOAI_CONFIG_LIST", format:
         "api_version": "Your Azure OpenAI Service version, eg 2023-12-01-preview"
     }
 ]
+```
+.env schema
+```bash
+TEMP_OUTPUT_DIR=work_dir
+SMTP_PASSWORD=
+```
