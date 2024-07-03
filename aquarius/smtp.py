@@ -2,7 +2,8 @@ import os
 import smtplib
 
 from dotenv import load_dotenv
-from schemas.exceptions import CustomError
+
+from aquarius.schemas.exceptions import CustomError
 
 load_dotenv()
 
