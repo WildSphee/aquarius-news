@@ -37,7 +37,7 @@ def fetch_arxiv_articles(query: str, max_results: int = 5) -> List[Dict[str, str
                 "title": result.title,
                 "summary": result.summary,
                 # "published": result.published.strftime("%Y-%m-%d %H:%M:%S"),
-                # "updated": result.updated.strftime("%Y-%m-%d %H:%M:%S"),  
+                # "updated": result.updated.strftime("%Y-%m-%d %H:%M:%S"),
                 "authors": ", ".join([author.name for author in result.authors]),
                 "url": result.entry_id,
             }

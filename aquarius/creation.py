@@ -3,6 +3,7 @@ from typing import Dict
 
 import autogen
 from autogen import ChatResult, register_function
+from autogen.agentchat.contrib.capabilities import transform_messages, transforms
 from dotenv import load_dotenv
 
 from aquarius.tools import fetch_arxiv_articles, fetch_reddit_posts
@@ -53,7 +54,7 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     scientist = autogen.AssistantAgent(
         name="Scientist",
         llm_config=gpt4_config,
-        system_message="""Scientist. You follow an approved plan. You are able to categorize papers after seeing their abstracts printed. You don't write code.""",
+        system_message="""Scientist. You follow an approved plan. You are able to categorize papers after seeing their abstracts printed. You know how to approach a research plan. You don't write code but you can choose what to execute.""",
     )
     # allow the scientist to call for latest posts
     for func in [fetch_reddit_posts, fetch_arxiv_articles]:
@@ -75,28 +76,38 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     )
     critic = autogen.AssistantAgent(
         name="Critic",
-        system_message="Critic. Double check plan, claims, code from other agents and provide feedback. Check whether the plan includes adding verifiable info such as source URL.",
+        system_message="Critic. Double check plan, claims, code from other agents and provide feedback. Check whether the plan includes adding verifiable info such as source URL. Be concise",
         llm_config=gpt4_config,
     )
+
+    transform_messages.TransformMessages(
+        transforms=[
+            transforms.MessageHistoryLimiter(max_messages=4),
+            # transforms.MessageTokenLimiter(max_tokens=1000, max_tokens_per_message=50, min_tokens=500),
+        ]
+    ).add_to_agent(critic)
+
     groupchat = autogen.GroupChat(
-        agents=[user_proxy, engineer, scientist, planner, executor, critic],
+        agents=[scientist, planner, executor],
         messages=[],
-        max_round=50,
+        max_round=30,
     )
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
 
     results: ChatResult = user_proxy.initiate_chat(
         manager,
         message="""
-    generate an article of the week for the latest Gen-AI / LLM trends and developments. 
+    generate an article of the week for the latest Gen-AI / LLM trends and developments.
+    Gather sources from all origins.
     With the following sections:
 
     1. summary
     2. highlights 
-        pointform about what are the latest developments in the field
+        pointform about what are the latest developments in the field, short and concise
     3. deep dive
-        talk about each point with relevant link references
+        elaborate on each highlights with relevant link references
     """,
     )
 
-    return results.summary
+    print(f"{results.chat_history[-1]=}")
+    return results.chat_history[-1]
