@@ -9,9 +9,9 @@ from aquarius.smtp import send_mail
 
 
 def test_send_mail_success(monkeypatch):
-    monkeypatch.setenv("SMTP_PASSWORD", "fake_password")
-
-    with patch("send_mail.smtplib.SMTP") as mock_smtp:
+    """Test that send_mail sends an email successfully with correct SMTP setup."""
+    with patch("smtplib.SMTP") as mock_smtp:
+        monkeypatch.setenv("SMTP_PASSWORD", "fake_password")
         mock_server = MagicMock()
         mock_smtp.return_value = mock_server
 
@@ -31,6 +31,7 @@ def test_send_mail_success(monkeypatch):
 
 @patch.dict(os.environ, {"SMTP_PASSWORD": "fake_password"})
 def test_send_mail_failure():
+    """Test that send_mail returns False when sending the email fails."""
     with patch("smtplib.SMTP") as mock_smtp:
         mock_server = MagicMock()
         mock_smtp.return_value = mock_server
@@ -42,15 +43,16 @@ def test_send_mail_failure():
 
 
 def test_send_mail_no_password(monkeypatch):
+    """Test that send_mail raises CustomError when SMTP_PASSWORD is not set."""
     # Unset SMTP_PASSWORD environment variable
     monkeypatch.delenv("SMTP_PASSWORD", raising=False)
     with pytest.raises(CustomError, match="SMTP_PASSWORD not set in .env."):
         send_mail("Test Subject", "Test Body")
 
 
-# Additional test for exception handling
 @patch.dict(os.environ, {"SMTP_PASSWORD": "fake_password"})
 def test_send_mail_exception():
+    """Test that send_mail returns False when an exception occurs during SMTP setup."""
     with patch("smtplib.SMTP") as mock_smtp:
         mock_smtp.side_effect = Exception("General exception")
 
