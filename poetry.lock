@@ -595,6 +595,19 @@ test = ["hypothesis (>=6.46.1)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)"]
 xml = ["lxml (>=4.9.2)"]
 
 [[package]]
+name = "paw"
+version = "0.0.1"
+description = "A python package than can be used as a model/template for writing, testing and deploying python packages."
+optional = false
+python-versions = "*"
+files = [
+    {file = "paw-0.0.1.tar.gz", hash = "sha256:cc0c3ce8e1602201a68f6d5b1eb3380f9c8ce46e5889e21127d6674c845ac1ee"},
+]
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "pyautogen"
 version = "0.2.31"
 description = "Enabling Next-Gen LLM Applications via Multi-Agent Conversation Framework"
@@ -1153,4 +1166,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "9bc8d6a1ace8d9628429261e02f4041ea478857d9bd03928b673d9c7f56fce22"
+content-hash = "377e14b2d51df7560b3e2915e434b46feb8026165cd40acb03fa4ca0b8386732"

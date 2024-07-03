@@ -15,14 +15,14 @@ gpt4_config = {
 }
 
 
-def create_chat_results(gpt4_config: Dict = gpt4_config) -> ChatResult:
+def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     """
     start a autogen group chat and generate chat completion.
 
     attribute:
         gpt4_config (Dict): a config dictionary for the LLMs
     return:
-
+        str: Summary of the chat - default to final output
     """
 
     user_proxy = autogen.UserProxyAgent(
@@ -76,8 +76,15 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> ChatResult:
     results: ChatResult = user_proxy.initiate_chat(
         manager,
         message="""
-    find papers on LLM applications from arxiv in the last week, create a markdown table of different domains.
+    generate an article of the week for the latest Gen-AI / LLM trends and developments. 
+    With the following sections:
+
+    1. summary
+    2. highlights 
+        pointform about what are the latest developments in the field
+    3. deep dive
+        talk about each point with relevant link references
     """,
     )
 
-    return results
+    return results.summary
