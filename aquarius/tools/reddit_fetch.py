@@ -9,7 +9,7 @@ load_dotenv()
 
 
 def fetch_reddit_posts(
-    subreddit_name: str,
+    subreddit_name: str = "LocalLLaMA",
     time_filter: Literal["hour", "day", "week", "month", "year", "all"] = "week",
     limit: int = 6,
 ) -> List[Dict[str, Any]]:
@@ -17,8 +17,8 @@ def fetch_reddit_posts(
     Fetch the top posts from a specified subreddit within a given time filter.
 
     Attributes:
-        subreddit_name (str): The name of the subreddit.
-        time_filter (Literal["hour", "day", "week", "month", "year", "all"], optional): The time filter to apply
+        subreddit_name (str): The name of the subreddit. LocalLLaMA is one of the biggest LLM subreddits.
+        time_filter (Literal["hour", "day", "week", "month", "year", "all"]): The time filter to apply
             when fetching top posts. Defaults to "week".
         limit (int, optional): The maximum number of posts to fetch. Default 6.
 
@@ -27,8 +27,6 @@ def fetch_reddit_posts(
             - 'title' (str): The title of the post.
             - 'url' (str): The URL of the post.
             - 'content' (str): The selftext content of the post.
-            - 'score' (int): The score of the post.
-            - 'created' (str): The creation time of the post in the format "YYYY-MM-DD HH:MM:SS TZ".
     """
     # Define your Reddit API credentials
     CLIENT_ID = os.getenv("CLIENT_ID")
@@ -53,10 +51,10 @@ def fetch_reddit_posts(
                     "title": post.title,
                     "url": post.url,
                     "content": post.selftext,
-                    "score": post.score,
-                    "created": datetime.fromtimestamp(
-                        post.created_utc, tz=timezone.utc
-                    ).strftime("%Y-%m-%d %H:%M:%S %Z"),
+                    # "score": post.score,
+                    # "created": datetime.fromtimestamp(
+                    #     post.created_utc, tz=timezone.utc
+                    # ).strftime("%Y-%m-%d %H:%M:%S %Z"),
                 }
             )
 

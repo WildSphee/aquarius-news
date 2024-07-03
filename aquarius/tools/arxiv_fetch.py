@@ -9,7 +9,7 @@ def fetch_arxiv_articles(query: str, max_results: int = 5) -> List[Dict[str, str
     Fetches arXiv articles about a certain topic over the last week.
 
     Attributes:
-        query (str): The topic to search for.
+        query (str): The paper topics to search for.
         max_results (int): The maximum number of articles to fetch. Default 5.
 
     Returns:
@@ -36,8 +36,8 @@ def fetch_arxiv_articles(query: str, max_results: int = 5) -> List[Dict[str, str
             {
                 "title": result.title,
                 "summary": result.summary,
-                "published": result.published.strftime("%Y-%m-%d %H:%M:%S"),
-                "updated": result.updated.strftime("%Y-%m-%d %H:%M:%S"),
+                # "published": result.published.strftime("%Y-%m-%d %H:%M:%S"),
+                # "updated": result.updated.strftime("%Y-%m-%d %H:%M:%S"),  
                 "authors": ", ".join([author.name for author in result.authors]),
                 "url": result.entry_id,
             }
