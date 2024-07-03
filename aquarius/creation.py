@@ -74,12 +74,12 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     """,
         llm_config=gpt4_config,
     )
+
     critic = autogen.AssistantAgent(
         name="Critic",
         system_message="Critic. Double check plan, claims, code from other agents and provide feedback. Check whether the plan includes adding verifiable info such as source URL. Be concise",
         llm_config=gpt4_config,
     )
-
     transform_messages.TransformMessages(
         transforms=[
             transforms.MessageHistoryLimiter(max_messages=4),
