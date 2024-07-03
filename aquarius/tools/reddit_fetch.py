@@ -1,10 +1,14 @@
 import praw
 from datetime import datetime, timezone, timedelta
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Define your Reddit API credentials
-CLIENT_ID = 'your_client_id'
-CLIENT_SECRET = 'your_client_secret'
-USER_AGENT = 'your_user_agent'
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("SCRAPER_SECRET")
+USER_AGENT = os.getenv("USER_AGENT")
 
 # Initialize the Reddit instance
 reddit = praw.Reddit(
