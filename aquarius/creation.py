@@ -30,8 +30,11 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
 
     user_proxy = autogen.UserProxyAgent(
         name="Admin",
-        system_message="A human admin. Interact with the planner to discuss the plan. Plan execution needs to be approved by this admin.",
         code_execution_config=False,
+        human_input_mode="NEVER",
+        is_termination_msg=lambda x: x.get("content", "")
+        .rstrip()
+        .endswith("TERMINATE"),
     )
     executor = autogen.UserProxyAgent(
         name="Executor",
@@ -88,9 +91,8 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     ).add_to_agent(critic)
 
     groupchat = autogen.GroupChat(
-        agents=[scientist, planner, executor],
+        agents=[user_proxy, scientist, planner, executor],
         messages=[],
-        max_round=30,
     )
     manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
 
@@ -106,8 +108,10 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
         pointform about what are the latest developments in the field, short and concise
     3. deep dive
         elaborate on each highlights with relevant link references
+
+    Reply TERMINATE in the end of the article when everything is done
     """,
     )
 
     print(f"{results.chat_history[-1]=}")
-    return results.chat_history[-1]
+    return results.chat_history[-1]["content"]

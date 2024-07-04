@@ -9,7 +9,7 @@ load_dotenv()
 
 
 def fetch_reddit_posts(
-    subreddit_name: str = "LocalLLaMA",
+    subreddit_name: Literal["LocalLLaMA"] = "LocalLLaMA",
     time_filter: Literal["hour", "day", "week", "month", "year", "all"] = "week",
     limit: int = 6,
 ) -> List[Dict[str, Any]]:
