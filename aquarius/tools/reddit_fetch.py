@@ -51,10 +51,6 @@ def fetch_reddit_posts(
                     "title": post.title,
                     "url": post.url,
                     "content": post.selftext,
-                    # "score": post.score,
-                    # "created": datetime.fromtimestamp(
-                    #     post.created_utc, tz=timezone.utc
-                    # ).strftime("%Y-%m-%d %H:%M:%S %Z"),
                 }
             )
 

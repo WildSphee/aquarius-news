@@ -94,7 +94,13 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
         agents=[user_proxy, scientist, planner, executor],
         messages=[],
     )
-    manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
+    manager = autogen.GroupChatManager(
+        groupchat=groupchat,
+        llm_config=gpt4_config,
+        is_termination_msg=lambda x: x.get("content", "")
+        .rstrip()
+        .endswith("TERMINATE"),
+    )
 
     results: ChatResult = user_proxy.initiate_chat(
         manager,
@@ -114,4 +120,4 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     )
 
     print(f"{results.chat_history[-1]=}")
-    return results.chat_history[-1]["content"]
+    return results.chat_history[-1]["content"].strip().rstrip("TERMINATE")
