@@ -46,14 +46,14 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
             "use_docker": True,
         },  # Please set use_docker=True if docker is available
     )
-    engineer = autogen.AssistantAgent(
-        name="Engineer",
-        llm_config=gpt4_config,
-        system_message="""Engineer. You follow an approved plan. You write python/shell code to solve tasks. Wrap the code in a code block that specifies the script type. The user can't modify your code. So do not suggest incomplete code which requires others to modify. Don't use a code block if it's not intended to be executed by the executor.
-    Don't include multiple code blocks in one response. Do not ask others to copy and paste the result. Check the execution result returned by the executor.
-    If the result indicates there is an error, fix the error and output the code again. Suggest the full code instead of partial code or code changes. If the error can't be fixed or if the task is not solved even after the code is executed successfully, analyze the problem, revisit your assumption, collect additional info you need, and think of a different approach to try.
-    """,
-    )
+    # engineer = autogen.AssistantAgent(
+    #     name="Engineer",
+    #     llm_config=gpt4_config,
+    #     system_message="""Engineer. You follow an approved plan. You write python/shell code to solve tasks. Wrap the code in a code block that specifies the script type. The user can't modify your code. So do not suggest incomplete code which requires others to modify. Don't use a code block if it's not intended to be executed by the executor.
+    # Don't include multiple code blocks in one response. Do not ask others to copy and paste the result. Check the execution result returned by the executor.
+    # If the result indicates there is an error, fix the error and output the code again. Suggest the full code instead of partial code or code changes. If the error can't be fixed or if the task is not solved even after the code is executed successfully, analyze the problem, revisit your assumption, collect additional info you need, and think of a different approach to try.
+    # """,
+    # )
     scientist = autogen.AssistantAgent(
         name="Scientist",
         llm_config=gpt4_config,
@@ -63,10 +63,10 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
     for func in [fetch_reddit_posts, fetch_arxiv_articles]:
         register_function(
             func,
-            caller=scientist,  # The assistant agent can suggest calls to the calculator.
-            executor=executor,  # The user proxy agent can execute the calculator calls.
-            name=func.__name__,  # func name
-            description=func.__doc__,  # doc string
+            caller=scientist,
+            executor=executor,
+            name=func.__name__,
+            description=func.__doc__,
         )
 
     planner = autogen.AssistantAgent(
@@ -100,7 +100,7 @@ def create_chat_results(gpt4_config: Dict = gpt4_config) -> str:
         manager,
         message="""
     generate an article of the week for the latest Gen-AI / LLM trends and developments.
-    Gather sources from all origins.
+    Gather sources from all origins. This article is sent by email so make sure its email formatted.
     With the following sections:
 
     1. summary
