@@ -20,6 +20,9 @@ Welcome to the Aquarius! This project leverages a network of agents to dynamical
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Steps](#steps)
+  - [Contribution](#contribution)
+    - [Linting](#linting)
+    - [Testing](#testing)
 
 ## Value Proposition
 ### Overview
@@ -118,3 +121,31 @@ USER_AGENT=python:YourProject:v1.0 (by /u/someUser)
 CLIENT_ID=
 SCRAPER_SECRET=
 ```
+
+## Contribution
+We welcome all contributions to this repository!
+
+### Linting
+Linting is the process of analyzing code to identify potential errors, enforce coding standards, and improve code quality. It helps catch bugs early, ensures code consistency, and enhances readability.
+This repository uses **Ruff** and **mypy** for linting. All PRs must be linted before being approved.
+
+To check for linting issues without applying fixes:
+```bash
+sh scripts/lint.sh <optional filepath>
+```
+To lint and automatically apply fixes:
+```bash
+sh scripts/lint.sh --in-place <optional filepath>
+```
+
+### Testing
+This repository uses `pytest` for testing. We use `monkeypatch` from pytest for patching in our tests to ensure robust and reliable testing.
+To run all tests:
+```bash
+pytest
+```
+To run a specific test file or function, for example:
+```bash
+pytest tests/tools/test_arxiv.py::test_fetch_arxiv_articles
+```
+By following these guidelines, we ensure that our code remains clean, consistent, and well-tested. Thank you for your contributions!
