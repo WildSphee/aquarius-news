@@ -1,5 +1,5 @@
 # **Aquarius Newsletter**
-*Revolutionize Your Newsletter Creation and Distribution with Intelligent Multiagent Systems*
+*Revolutionize Your Newsletter Creation and Distribution with Intelligent Multi-agent Systems (MAS)*
 
 Welcome to the Aquarius! This project leverages a network of agents to dynamically create and distribute newsletters via SMTP or messaging platforms. Target is to provide automatic updated information about the latest news in a certain industry / trend.
 
@@ -85,22 +85,22 @@ The system consists of the following main components:
 
 3. **Set up configuration**:
 
-at the root, create a file called: "AOAI_CONFIG_LIST", format:
+at the root, create a file called: "OAI_CONFIG_LIST", format:
 ```python
 [
     {
-        "model": "Your Azure OpenAI Service Deployment Model Name",
-        "api_key": "Your Azure OpenAI Service API Key",
-        "base_url": "Your Azure OpenAI Service Endpoint",
-        "api_type": "azure",
-        "api_version": "Your Azure OpenAI Service version, eg 2023-12-01-preview"
+        "model": "Your OpenAI Service Deployment Model Name",
+        "api_key": "Your OpenAI Service API Key",
+        "base_url": "Your OpenAI Service Endpoint",
+        "api_type": "azure / OpenAI",
+        "api_version": "Your OpenAI Service version, eg 2023-12-01-preview"
     },
     {
-        "model": "Your Azure OpenAI Service Deployment Model Name",
-        "api_key": "Your Azure OpenAI Service API Key",
-        "base_url": "Your Azure OpenAI Service Endpoint",
-        "api_type": "azure",
-        "api_version": "Your Azure OpenAI Service version, eg 2023-12-01-preview"
+        "model": "Your OpenAI Service Deployment Model Name",
+        "api_key": "Your OpenAI Service API Key",
+        "base_url": "Your OpenAI Service Endpoint",
+        "api_type": "azure / OpenAI",
+        "api_version": "Your OpenAI Service version, eg 2023-12-01-preview"
     }
 ]
 ```

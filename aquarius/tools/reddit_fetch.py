@@ -9,15 +9,15 @@ load_dotenv()
 
 
 def fetch_reddit_posts(
-    subreddit_name: Literal["LocalLLaMA"] = "LocalLLaMA",
-    time_filter: Literal["hour", "day", "week", "month", "year", "all"] = "week",
+    subreddit_name: Literal["LocalLLaMA", "LLMDevs"] = "LocalLLaMA",
+    time_filter: Literal["day", "week"] = "week",
     limit: int = 6,
 ) -> List[Dict[str, Any]]:
     """
     Fetch the top posts from a specified subreddit within a given time filter.
 
     Attributes:
-        subreddit_name (str): The name of the subreddit. LocalLLaMA is one of the biggest LLM subreddits.
+        subreddit_name (Literal[str]): The name of the subreddit.
         time_filter (Literal["hour", "day", "week", "month", "year", "all"]): The time filter to apply
             when fetching top posts. Defaults to "week".
         limit (int, optional): The maximum number of posts to fetch. Default 6.
