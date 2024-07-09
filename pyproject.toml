@@ -2,7 +2,7 @@
 name = "aquarius"
 version = "0.1.0"
 description = "A multiagent news letter for your personal and corporate information research"
-authors = ["Reagan <rrr.chanhiulok@gmail.com>"]
+authors = ["Reagan <rrr.chanhiulok@gmail.com>, Robin Ng <ngcl1013@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
