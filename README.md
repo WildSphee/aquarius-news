@@ -26,8 +26,8 @@ Welcome to the Aquarius! This project leverages a network of agents to dynamical
 
 ## Value Proposition
 ### Overview
-![signal-2024-07-19-202837_003](https://github.com/user-attachments/assets/71bb266c-b5e0-4076-b702-f4fc7f3f44be)
 ![signal-2024-07-19-202837_002](https://github.com/user-attachments/assets/8c9aa981-b3ad-49a7-aab8-78ae7d73bbf1)
+![signal-2024-07-19-202837_003](https://github.com/user-attachments/assets/71bb266c-b5e0-4076-b702-f4fc7f3f44be)
 
 Aquarius is a groundbreaking platform that harnesses the power of Multiagent Systems (MAS) and advanced Language Learning Models (LLMs) to streamline the creation and distribution of highly personalized newsletters. Designed to cater to dynamic content needs, Aquarius leverages intelligent agents to automate and optimize every step of the newsletter process, from content generation to delivery.
 
