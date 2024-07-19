@@ -1,4 +1,4 @@
-![signal-2024-07-19-202837_002](https://github.com/user-attachments/assets/7e601733-d9cd-4720-aef2-ee3dba741c5c)# **Aquarius Newsletter**
+# **Aquarius Newsletter**
 *Revolutionize Your Newsletter Creation and Distribution with Intelligent Multi-agent Systems (MAS)*
 
 Welcome to the Aquarius! This project leverages a network of agents to dynamically create and distribute newsletters via SMTP or messaging platforms. Target is to provide automatic updated information about the latest news in a certain industry / trend.
